@@ -4,23 +4,23 @@ import vim
 start_time = None
 end_time = None
 
-POMODORO_INTERVAL = 20 # minutes
+VIMODORO_INTERVAL = 1 # minutes
 
-def pomodoro():
+def vimodoro():
     if _is_timer_running():
-        _start_pomodoro()
+        _start_vimodoro()
     else:
-        _stop_pomodoro()
+        _stop_vimodoro()
 
 def _is_timer_running():
     return start_time is None and end_time is None
 
-def _start_pomodoro():
+def _start_vimodoro():
     global start_time, end_time
     start_time = datetime.now()
-    end_time = start_time + timedelta(minutes=POMODORO_INTERVAL)
+    end_time = start_time + timedelta(minutes=VIMODORO_INTERVAL)
 
-def _stop_pomodoro():
+def _stop_vimodoro():
     # Reset the times
     global start_time, end_time
     start_time = end_time = None
