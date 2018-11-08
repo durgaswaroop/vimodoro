@@ -22,16 +22,25 @@ def stop_pomodoro():
 
 
 def get_time_remaining():
+    #print(vim.eval('m'))
+    #vim.command("let vm = 'hola'")
     if end_time is None:
-        return ""
+        vim.command(f"let full_time = '00:00'")
+        return
 
     current_time = datetime.now()
-    time_left = end_time - current_time
-    seconds = time_left.seconds
+
+    if current_time > end_time:
+        seconds = 0
+    else:
+        time_left = end_time - current_time
+        seconds = time_left.seconds
+
     minutes_left = seconds // 60
     seconds_left = seconds % 60
     #print(str(minutes_left) + ':' + str(seconds_left))
-    return str(minutes_left) + ':' + str(seconds_left)
+    full_time = str(minutes_left) + ':' + str(seconds_left)
+    vim.command(f"let full_time = '{full_time}'")
 
 def set_status_line():
     time_remaining = get_time_remaining()
