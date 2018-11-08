@@ -18,3 +18,5 @@ function! GetTimeRemaining()
 	return full_time
 endfunction
 
+command! Vimodoro call Vimodoro()
+command! GetTimeRemaining call GetTimeRemaining()
