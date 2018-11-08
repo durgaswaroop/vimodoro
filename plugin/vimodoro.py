@@ -6,13 +6,22 @@ end_time = None
 
 POMODORO_INTERVAL = 20 # minutes
 
-def start_pomodoro():
-    global start_time, end_time
+def pomodoro():
+    if _is_timer_running():
+        _start_pomodoro()
+    else:
+        _stop_pomodoro()
 
+def _is_timer_running():
+    return start_time is None and end_time is None
+
+def _start_pomodoro():
+    global start_time, end_time
     start_time = datetime.now()
     end_time = start_time + timedelta(minutes=POMODORO_INTERVAL)
 
-def stop_pomodoro():
+def _stop_pomodoro():
+    # Reset the times
     global start_time, end_time
     start_time = end_time = None
 
